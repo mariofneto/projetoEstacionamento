@@ -9,9 +9,9 @@ namespace projetoEstacionamento.Models
     {
         public decimal precoInicial { get; set; }
         public decimal precoHora { get; set; }
-        public List<string> veiculos = new List<string>();
+        public static List<string> veiculos = new List<string>();
 
-        public void AdicionarVeiculo()
+        public static void AdicionarVeiculo()
         {
             Console.Clear();
             Console.Write("Qual o valor inicial R$");
@@ -25,34 +25,35 @@ namespace projetoEstacionamento.Models
 
             Console.WriteLine($"Veículo com placa {placaInserida} adicionado com sucesso!!!");
             Console.ReadLine();
+            Menu.Escolha();
         }
-        public void RemoverVeiculo()
+        public static void RemoverVeiculo()
         {
             Console.Clear();
             Console.WriteLine("Qual a placa do seu veículo? EXEMPLO BASE(XXX-YYYY)");
             var placaInserida = Console.ReadLine().ToUpper();
             var buscarPlaca = veiculos.Contains(placaInserida);
 
-            if (buscarPlaca)
+            if(buscarPlaca)
             {
-                veiculos.Remove(placaInserida);
-                Console.WriteLine("Veiculo removido com sucesso!");
-                Console.ReadLine();
+
             }
-            else
-            {
-                Console.WriteLine("Não existe esse veículo no nosso estacionamento!");
+            else{
+                Console.WriteLine("Não existe essa placa no nosso estacionamento, tente novamente!");
+                
             }
+            
         }
-        public void ListarVeiculo()
+        public static void ListarVeiculo()
         {
             Console.Clear();
-            Console.WriteLine("Temos esses veiculos: ");
+            Console.WriteLine("Temos esses veículos no nosso estacionamento: ");
             foreach (var veiculo in veiculos)
             {
-                Console.WriteLine(veiculo);
+                Console.WriteLine($"* {veiculo} *");
             }
             Console.ReadLine();
+            Menu.Escolha();
         }
     }
 }
