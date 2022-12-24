@@ -11,7 +11,7 @@
  
  **precoInicial(decimal)**    
  **precoHora(decimal)**   
- **veiculos(List<string>)** que contem apenas a sua placa(com 3 letras e quatro números)
+ **veiculos(List<veiculo>)** que contem apenas a sua placa(com 3 letras e quatro números)
  
  E também tem três métodos:
  
