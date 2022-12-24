@@ -16,12 +16,14 @@ namespace projetoEstacionamento.Models
             Console.WriteLine("1 - Cadastrar Veículo\n2 - Remover Veículo\n3 - Listar Veículos\n4 - Encerrar");
             var opcao = Convert.ToInt32(Console.ReadLine());
             var opcaoEscolhida = (opcao)opcao;
+           
+            var estacionamento = new Estacionamento();
 
             switch (opcaoEscolhida)
             {
-                case Models.opcao.Cadastrar: Estacionamento.AdicionarVeiculo(); break;
-                case Models.opcao.Remover: Estacionamento.RemoverVeiculo(); break;
-                case Models.opcao.Listar: Estacionamento.ListarVeiculo(); break;
+                case Models.opcao.Cadastrar: estacionamento.AdicionarVeiculo(); break;
+                case Models.opcao.Remover: estacionamento.RemoverVeiculo(); break;
+                case Models.opcao.Listar: estacionamento.ListarVeiculo(); break;
                 case Models.opcao.Encerrar: Environment.Exit(0); break;
                 default:
                     Console.Clear();

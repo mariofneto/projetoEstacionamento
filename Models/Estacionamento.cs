@@ -10,41 +10,50 @@ namespace projetoEstacionamento.Models
         public decimal precoInicial { get; set; }
         public decimal precoHora { get; set; }
         public static List<string> veiculos = new List<string>();
+        public Veiculo veiculo { get; set; }
 
-        public static void AdicionarVeiculo()
+        public void AdicionarVeiculo()
         {
             Console.Clear();
             Console.Write("Qual o valor inicial R$");
-            var precoInicial = Convert.ToDecimal(Console.ReadLine());
+            veiculo.valorInicial = Convert.ToDecimal(Console.ReadLine());
             Console.Write("Qual o valor por hora R$");
-            var precoHora = Convert.ToDecimal(Console.ReadLine());
+            veiculo.valorPorHora = Convert.ToDecimal(Console.ReadLine());
             Console.WriteLine("Qual a placa do seu veículo? EXEMPLO BASE(XXX-YYYY)");
-            var placaInserida = Console.ReadLine().ToUpper();
+            veiculo.placa = Console.ReadLine().ToUpper();
 
-            veiculos.Add(placaInserida);
+            veiculos.Add(veiculo.placa);
 
-            Console.WriteLine($"Veículo com placa {placaInserida} adicionado com sucesso!!!");
+            Console.WriteLine($"Veículo com placa {veiculo.placa} adicionado com sucesso!!!");
             Console.ReadLine();
             Menu.Escolha();
         }
-        public static void RemoverVeiculo()
+        public void RemoverVeiculo()
         {
             Console.Clear();
+            Console.WriteLine("Quantas horas você ficou?");
+            var horas = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Qual a placa do seu veículo? EXEMPLO BASE(XXX-YYYY)");
-            var placaInserida = Console.ReadLine().ToUpper();
-            var buscarPlaca = veiculos.Contains(placaInserida);
+            veiculo.placa = Console.ReadLine().ToUpper();
+            var buscarPlaca = veiculos.FirstOrDefault(veiculo.placa);
 
-            if(buscarPlaca)
+            if (buscarPlaca.IndexOf(veiculo.placa) >= 0)
             {
+                var pagamento = veiculo.valorInicial + veiculo.valorPorHora * horas;
+                veiculos.Remove(veiculo.placa);
+                Console.WriteLine($"O veículo {veiculo.placa} foi removido e o preço total foi de: R$ {pagamento}");
 
             }
-            else{
+            else
+            {
                 Console.WriteLine("Não existe essa placa no nosso estacionamento, tente novamente!");
-                
+
             }
-            
+            Console.ReadLine();
+            Menu.Escolha();
+
         }
-        public static void ListarVeiculo()
+        public void ListarVeiculo()
         {
             Console.Clear();
             Console.WriteLine("Temos esses veículos no nosso estacionamento: ");
